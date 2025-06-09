@@ -170,7 +170,7 @@ def show_club_detail(club_data):
     st.markdown("### 🏆 2024年度活動実績")
     st.text(club_data['2024度活動実績を教えてください。以下のフォーマットでお願いいたします。\n大会名：順位'])
     
-    if club_data['合宿はありますか？'] == 'はい':
+    if club_data['合宿はありますか？'] == 'あります':
         st.markdown("### 🏕️ 合宿情報")
         if pd.notna(club_data['令和6年度の合宿の詳細を教えてください（場所・期間・費用）。']):
             st.info(club_data['令和6年度の合宿の詳細を教えてください（場所・期間・費用）。'])
