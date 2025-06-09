@@ -178,7 +178,7 @@ def show_club_detail(club_data):
             st.info("合宿はありますが、詳細は未定です。")
 
 def main():
-    st.title("🏫 部活動一覧")
+    st.title("🏫 日本大学第一中学・高等学校　2025年度部活動データ")
     st.markdown("部活動のアイコンをクリックして詳細を確認してください")
     
     # データ読み込み
