@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import math
+from clubs_data import CLUBS_DATA
 
 # ページ設定
 st.set_page_config(
@@ -85,22 +86,9 @@ CLUB_ICONS = {
 
 @st.cache_data
 def load_data():
-    """Excelファイルからデータを読み込む"""
-    import os
-    file_path = 'clubs2025.xlsx'
-    
-    # ファイルの存在確認
-    if not os.path.exists(file_path):
-        st.error(f"エラー: {file_path} が見つかりません。")
-        st.info(f"現在のディレクトリ: {os.getcwd()}")
-        st.info(f"ディレクトリ内のファイル: {os.listdir('.')}")
-        raise FileNotFoundError(f"{file_path} not found")
-    
-    try:
-        df = pd.read_excel(file_path)
-    except Exception as e:
-        st.error(f"Excelファイルの読み込みエラー: {str(e)}")
-        raise
+    """組み込みデータからDataFrameを作成"""
+    # 組み込みデータからDataFrameを作成
+    df = pd.DataFrame(CLUBS_DATA)
     
     # 全角数字を半角数字に変換する関数
     def convert_fullwidth_to_halfwidth(text):
