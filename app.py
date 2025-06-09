@@ -86,7 +86,21 @@ CLUB_ICONS = {
 @st.cache_data
 def load_data():
     """Excelファイルからデータを読み込む"""
-    df = pd.read_excel('clubs2025.xlsx')
+    import os
+    file_path = 'clubs2025.xlsx'
+    
+    # ファイルの存在確認
+    if not os.path.exists(file_path):
+        st.error(f"エラー: {file_path} が見つかりません。")
+        st.info(f"現在のディレクトリ: {os.getcwd()}")
+        st.info(f"ディレクトリ内のファイル: {os.listdir('.')}")
+        raise FileNotFoundError(f"{file_path} not found")
+    
+    try:
+        df = pd.read_excel(file_path)
+    except Exception as e:
+        st.error(f"Excelファイルの読み込みエラー: {str(e)}")
+        raise
     
     # 全角数字を半角数字に変換する関数
     def convert_fullwidth_to_halfwidth(text):
