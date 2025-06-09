@@ -132,7 +132,7 @@ def show_club_detail(club_data):
         st.markdown("### 💰 費用・その他")
         st.write(f"**年間費用**: {club_data['年間費用はどのくらいですか？（合宿費を除いてください）']}")
         st.write(f"**性別制限**: {club_data['性別の限定はありますか？']}")
-        st.write(f"**初心者**: {'歓迎' if club_data['初心者'] == '〇' else '要相談'}")
+        st.write(f"**初心者**: {'歓迎' if club_data['初心者'] == '歓迎' else '要相談'}")
     
     with col2:
         st.markdown("### 👥 部員数")
@@ -220,9 +220,9 @@ def main():
         
         if beginner_filter != "すべて":
             if beginner_filter == "歓迎":
-                filtered_df = filtered_df[filtered_df['初心者'] == '〇']
+                filtered_df = filtered_df[filtered_df['初心者'] == '歓迎']
             else:
-                filtered_df = filtered_df[filtered_df['初心者'] != '〇']
+                filtered_df = filtered_df[filtered_df['初心者'] != '歓迎']
         
         # ソート
         if sort_order == "部員数順":
