@@ -18,204 +18,235 @@ st.markdown("""
     
     .stApp {
         font-family: 'Noto Sans JP', sans-serif;
+        background-color: #f8fafc;
     }
     
     .main-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem 0;
-        border-radius: 16px;
-        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
         text-align: center;
         color: white;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 20px rgba(30, 64, 175, 0.2);
     }
     
     .main-title {
-        font-size: 2.5rem;
-        font-weight: 700;
+        font-size: 2rem;
+        font-weight: 600;
         margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
     .main-subtitle {
-        font-size: 1.2rem;
-        font-weight: 300;
+        font-size: 1rem;
+        font-weight: 400;
         opacity: 0.9;
     }
     
     .filter-section {
         background: white;
         padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        margin-bottom: 2rem;
-        border: 1px solid #e8ecf0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 1.5rem;
+        border: 1px solid #e2e8f0;
     }
     
-    .club-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1rem;
+    .filter-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #334155;
+        margin-bottom: 1rem;
     }
     
     .club-card {
         background: white;
-        border-radius: 16px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
         padding: 1.5rem;
         text-align: center;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid #e8ecf0;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .club-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        transform: scaleX(0);
-        transition: transform 0.3s ease;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     
     .club-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-        border-color: #667eea;
-    }
-    
-    .club-card:hover::before {
-        transform: scaleX(1);
+        border-color: #3b82f6;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+        transform: translateY(-2px);
     }
     
     .club-icon {
-        font-size: 3.5rem;
-        margin-bottom: 1rem;
+        font-size: 3rem;
+        margin-bottom: 0.8rem;
         display: block;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
     
     .club-name {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 600;
-        color: #2d3748;
+        color: #1e293b;
         margin-bottom: 0.5rem;
-        line-height: 1.4;
+        line-height: 1.3;
     }
     
     .club-members {
-        font-size: 0.9rem;
-        color: #718096;
+        font-size: 0.85rem;
+        color: #64748b;
         font-weight: 500;
-    }
-    
-    .detail-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 2rem;
-        border-radius: 16px;
-        margin-bottom: 2rem;
-        text-align: center;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
-    
-    .detail-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .info-card {
-        background: white;
-        padding: 1.5rem;
+        background: #f1f5f9;
+        padding: 0.25rem 0.75rem;
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        margin-bottom: 1.5rem;
-        border: 1px solid #e8ecf0;
+        display: inline-block;
     }
     
-    .info-card h3 {
-        color: #2d3748;
-        font-weight: 600;
-        margin-bottom: 1rem;
+    .club-quick-info {
+        font-size: 0.75rem;
+        color: #64748b;
+        margin-top: 0.5rem;
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .metric-card {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        color: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    }
-    
-    .metric-value {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-    
-    .metric-label {
-        font-size: 1rem;
-        opacity: 0.9;
-    }
-    
-    .back-button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-bottom: 1.5rem;
-    }
-    
-    .back-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-    }
-    
-    .stDataFrame {
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    
-    .achievement-section {
-        background: #f8fafc;
-        padding: 1.5rem;
-        border-radius: 12px;
-        border-left: 4px solid #fbbf24;
-        margin: 1rem 0;
-    }
-    
-    .filter-container {
-        display: flex;
+        justify-content: center;
         gap: 1rem;
-        align-items: center;
         flex-wrap: wrap;
     }
     
+    .quick-info-item {
+        background: #f8fafc;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+    }
+    
+    .detail-header {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .detail-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    
+    .info-section {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        margin-bottom: 1rem;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .info-section h3 {
+        color: #1e293b;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+    }
+    
+    .highlight-box {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 6px;
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .metric-display {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        text-align: center;
+        margin: 1rem 0;
+    }
+    
+    .metric-number {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    
+    .metric-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+    }
+    
     .result-count {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #1e40af;
         color: white;
         padding: 0.5rem 1rem;
         border-radius: 20px;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 0.9rem;
         display: inline-block;
         margin: 1rem 0;
+    }
+    
+    .back-button-container {
+        margin-bottom: 1.5rem;
+    }
+    
+    .stButton > button {
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
+    }
+    
+    .stButton > button:hover {
+        background: #2563eb;
+    }
+    
+    .stSelectbox > div > div {
+        border-radius: 6px;
+    }
+    
+    .safe-info {
+        background: #f0f9ff;
+        border: 1px solid #0ea5e9;
+        border-radius: 6px;
+        padding: 1rem;
+        margin: 1rem 0;
+        color: #0c4a6e;
+    }
+    
+    .activity-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .activity-item {
+        background: #f8fafc;
+        padding: 0.75rem;
+        border-radius: 6px;
+        border-left: 3px solid #3b82f6;
+    }
+    
+    .activity-label {
+        font-weight: 600;
+        color: #1e293b;
+        font-size: 0.85rem;
+    }
+    
+    .activity-value {
+        color: #64748b;
+        font-size: 0.9rem;
+        margin-top: 0.25rem;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -296,28 +327,61 @@ def show_club_detail(club_data):
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown('<div class="info-card">', unsafe_allow_html=True)
+        st.markdown('<div class="info-section">', unsafe_allow_html=True)
         st.markdown("### 📝 部活紹介")
-        st.info(club_data['部活紹介をお願いします（最大250文字）。'])
+        st.markdown(f'<div class="highlight-box">{club_data["部活紹介をお願いします（最大250文字）。"]}</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown('<div class="info-card">', unsafe_allow_html=True)
+        st.markdown('<div class="info-section">', unsafe_allow_html=True)
         st.markdown("### 📅 活動情報")
-        st.write(f"**活動日**: {club_data['2025年度活動日を教えてください。']}")
+        st.markdown('<div class="activity-grid">', unsafe_allow_html=True)
+        st.markdown(f'''
+        <div class="activity-item">
+            <div class="activity-label">活動日</div>
+            <div class="activity-value">{club_data['2025年度活動日を教えてください。']}</div>
+        </div>
+        ''', unsafe_allow_html=True)
         if pd.notna(club_data['2025年度の活動場所を教えてください。']):
-            st.write(f"**活動場所**: {club_data['2025年度の活動場所を教えてください。']}")
+            st.markdown(f'''
+            <div class="activity-item">
+                <div class="activity-label">活動場所</div>
+                <div class="activity-value">{club_data['2025年度の活動場所を教えてください。']}</div>
+            </div>
+            ''', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown('<div class="info-card">', unsafe_allow_html=True)
-        st.markdown("### 💰 費用・その他")
-        st.write(f"**年間費用**: {club_data['年間費用はどのくらいですか？（合宿費を除いてください）']}")
-        st.write(f"**性別制限**: {club_data['性別の限定はありますか？']}")
-        st.write(f"**初心者**: {'歓迎' if club_data['初心者'] == '歓迎' else '要相談'}")
+        st.markdown('<div class="info-section">', unsafe_allow_html=True)
+        st.markdown("### 💰 入部に関する情報")
+        st.markdown('<div class="activity-grid">', unsafe_allow_html=True)
+        st.markdown(f'''
+        <div class="activity-item">
+            <div class="activity-label">年間費用</div>
+            <div class="activity-value">{club_data['年間費用はどのくらいですか？（合宿費を除いてください）']}</div>
+        </div>
+        <div class="activity-item">
+            <div class="activity-label">性別制限</div>
+            <div class="activity-value">{club_data['性別の限定はありますか？']}</div>
+        </div>
+        <div class="activity-item">
+            <div class="activity-label">初心者</div>
+            <div class="activity-value">{'歓迎しています' if club_data['初心者'] == '歓迎' else '要相談'}</div>
+        </div>
+        ''', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
     with col2:
-        st.markdown('<div class="info-card">', unsafe_allow_html=True)
-        st.markdown("### 👥 部員数")
+        # 総部員数の大きな表示
+        st.markdown(f"""
+        <div class="metric-display">
+            <div class="metric-number">{int(club_data['総部員数'])}</div>
+            <div class="metric-label">総部員数</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown('<div class="info-section">', unsafe_allow_html=True)
+        st.markdown("### 👥 学年別部員数")
         # 部員数テーブル作成
         member_data = {
             '学年': ['中学1年', '中学2年', '中学3年', '高校1年', '高校2年', '高校3年'],
@@ -342,35 +406,37 @@ def show_club_detail(club_data):
         member_df['合計'] = member_df['女子'] + member_df['男子']
         
         st.dataframe(member_df, hide_index=True)
-        
-        # メトリック表示を更新
-        st.markdown(f"""
-        <div class="metric-card">
-            <div class="metric-value">{int(club_data['総部員数'])}</div>
-            <div class="metric-label">総部員数</div>
-        </div>
-        """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
         
-        st.markdown('<div class="info-card">', unsafe_allow_html=True)
+        st.markdown('<div class="info-section">', unsafe_allow_html=True)
         st.markdown("### 👨‍🏫 指導体制")
-        st.write(f"**顧問**: {club_data['顧問の先生の人数と性別を教えてください']}")
-        st.write(f"**コーチ**: {club_data['コーチの人数と性別を教えてください。']}")
+        st.markdown('<div class="activity-grid">', unsafe_allow_html=True)
+        st.markdown(f'''
+        <div class="activity-item">
+            <div class="activity-label">顧問の先生</div>
+            <div class="activity-value">{club_data['顧問の先生の人数と性別を教えてください']}</div>
+        </div>
+        <div class="activity-item">
+            <div class="activity-label">コーチ</div>
+            <div class="activity-value">{club_data['コーチの人数と性別を教えてください。']}</div>
+        </div>
+        ''', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
     # 活動実績と合宿情報
-    st.markdown('<div class="achievement-section">', unsafe_allow_html=True)
+    st.markdown('<div class="info-section">', unsafe_allow_html=True)
     st.markdown("### 🏆 2024年度活動実績")
-    st.text(club_data['2024度活動実績を教えてください。以下のフォーマットでお願いいたします。\n大会名：順位'])
+    st.markdown(f'<div class="highlight-box">{club_data["2024度活動実績を教えてください。以下のフォーマットでお願いいたします。\n大会名：順位"]}</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     
     if club_data['合宿はありますか？'] == 'あります':
-        st.markdown('<div class="info-card">', unsafe_allow_html=True)
+        st.markdown('<div class="info-section">', unsafe_allow_html=True)
         st.markdown("### 🏕️ 合宿情報")
         if pd.notna(club_data['令和6年度の合宿の詳細を教えてください（場所・期間・費用）。']):
-            st.info(club_data['令和6年度の合宿の詳細を教えてください（場所・期間・費用）。'])
+            st.markdown(f'<div class="safe-info">{club_data["令和6年度の合宿の詳細を教えてください（場所・期間・費用）。"]}</div>', unsafe_allow_html=True)
         else:
-            st.info("合宿はありますが、詳細は未定です。")
+            st.markdown('<div class="safe-info">合宿はありますが、詳細は未定です。</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
 
 def main():
@@ -406,12 +472,12 @@ def main():
         # 部活動一覧の表示
         # フィルタリングオプション
         st.markdown('<div class="filter-section">', unsafe_allow_html=True)
-        st.markdown("### 🔍 検索・フィルター")
+        st.markdown('<div class="filter-title">🔍 部活動を探す</div>', unsafe_allow_html=True)
         col1, col2, col3 = st.columns(3)
         with col1:
             gender_filter = st.selectbox("性別制限", ["すべて", "制限なし", "女子のみ", "男子のみ"])
         with col2:
-            beginner_filter = st.selectbox("初心者", ["すべて", "歓迎", "要相談"])
+            beginner_filter = st.selectbox("初心者歓迎", ["すべて", "歓迎", "要相談"])
         with col3:
             sort_order = st.selectbox("並び順", ["名前順", "部員数順"])
         st.markdown('</div>', unsafe_allow_html=True)
@@ -437,8 +503,8 @@ def main():
         # グリッド表示
         st.markdown(f'<div class="result-count">該当する部活動: {len(filtered_df)}件</div>', unsafe_allow_html=True)
         
-        # 3列のグリッドで表示（より見やすく）
-        cols_per_row = 3
+        # 4列のグリッドで表示（より見やすく）
+        cols_per_row = 4
         rows = math.ceil(len(filtered_df) / cols_per_row)
         
         for row in range(rows):
@@ -451,21 +517,36 @@ def main():
                     icon = CLUB_ICONS.get(club_name, '🏫')
                     
                     with cols[col_idx]:
-                        # カスタムカードデザインでボタンを作成
+                        # クリック可能なカードを作成
+                        card_html = f"""
+                        <div class="club-card" onclick="selectClub('{club_name}')">
+                            <div class="club-icon">{icon}</div>
+                            <div class="club-name">{club_name}</div>
+                            <div class="club-members">👥 {int(club['総部員数'])}人</div>
+                            <div class="club-quick-info">
+                                <span class="quick-info-item">{'初心者歓迎' if club['初心者'] == '歓迎' else '要相談'}</span>
+                                <span class="quick-info-item">{club['性別の限定はありますか？']}</span>
+                            </div>
+                        </div>
+                        """
+                        
+                        # Streamlitボタンとカスタムカードを組み合わせ
                         if st.button(
-                            f"{icon}",
+                            f"{icon} {club_name}",
                             key=f"club_{idx}",
                             use_container_width=True,
-                            help=f"{club_name} - {int(club['総部員数'])}人"
+                            help=f"クリックして{club_name}の詳細を見る"
                         ):
                             st.session_state.selected_club = club_name
                             st.rerun()
                         
-                        # ボタンの下に情報を表示
+                        # ボタンの下に簡潔な情報を表示
                         st.markdown(f"""
-                        <div style="text-align: center; margin-top: -10px;">
-                            <div class="club-name">{club_name}</div>
+                        <div style="text-align: center; margin-top: -5px; padding: 0.5rem;">
                             <div class="club-members">👥 {int(club['総部員数'])}人</div>
+                            <div style="font-size: 0.7rem; color: #64748b; margin-top: 0.25rem;">
+                                {'初心者歓迎' if club['初心者'] == '歓迎' else '要相談'} • {club['性別の限定はありますか？']}
+                            </div>
                         </div>
                         """, unsafe_allow_html=True)
 
