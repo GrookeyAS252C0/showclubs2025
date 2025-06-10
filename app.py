@@ -179,6 +179,49 @@ def show_club_detail(club_data):
         else:
             st.info("合宿はありますが、詳細は未定です。")
 
+def categorize_clubs(df):
+    """部活動をカテゴリ別にグループ化して並び替え"""
+    # 部活動のカテゴリ分類
+    categories = {
+        'バレーボール': ['中学バレーボール部', '高校バレーボール部'],
+        '野球': ['硬式野球部', '軟式野球部', '中学野球部'],
+        'バスケットボール': ['女子バスケットボール部', '男子バスケットボール部'],
+        'テニス・卓球・バドミントン': ['テニス部', '卓球部', 'バドミントン同好会'],
+        '武道・格闘技': ['柔道部', '剣道部'],
+        '音楽・芸能': ['吹奏楽部', 'ダンス部', 'チアリーダー部', '合唱同好会'],
+        '学術・文化': ['数学同好会', '物理部', '歴史部', '書道部', '写真部', 'ECC'],
+        'その他スポーツ': ['水泳部', 'アメリカンフットボール', '陸上部'],
+        '趣味・同好会': ['マジック・ジャグリング同好会', '釣り人同好会']
+    }
+    
+    # カテゴリごとに部活動をソート
+    sorted_clubs = []
+    used_clubs = set()
+    
+    for category, club_list in categories.items():
+        category_clubs = []
+        for club_name in club_list:
+            if club_name in df['部活動名を教えてください。'].values:
+                category_clubs.append(club_name)
+                used_clubs.add(club_name)
+        
+        # カテゴリ内で50音順ソート
+        category_clubs.sort()
+        sorted_clubs.extend(category_clubs)
+    
+    # カテゴリに分類されていない部活動を50音順で追加
+    remaining_clubs = []
+    for club_name in df['部活動名を教えてください。'].values:
+        if club_name not in used_clubs:
+            remaining_clubs.append(club_name)
+    
+    remaining_clubs.sort()
+    sorted_clubs.extend(remaining_clubs)
+    
+    # DataFrameを新しい順序で並び替え
+    df_sorted = df.set_index('部活動名を教えてください。').loc[sorted_clubs].reset_index()
+    return df_sorted
+
 def main():
     st.title("🏫 日本大学第一中学・高等学校　2025年度部活動データ")
     st.markdown("部活動のアイコンをクリックして詳細を確認してください")
@@ -186,6 +229,8 @@ def main():
     # データ読み込み
     try:
         df = load_data()
+        # カテゴリ別に並び替え
+        df = categorize_clubs(df)
     except Exception as e:
         st.error(f"データの読み込みに失敗しました: {e}")
         return
@@ -230,7 +275,8 @@ def main():
         if sort_order == "部員数順":
             filtered_df = filtered_df.sort_values('総部員数', ascending=False)
         else:
-            filtered_df = filtered_df.sort_values('部活動名を教えてください。')
+            # 名前順の場合は、カテゴリ別並び替えを維持
+            filtered_df = categorize_clubs(filtered_df)
         
         # グリッド表示
         st.markdown(f"### 該当する部活動: {len(filtered_df)}件")
