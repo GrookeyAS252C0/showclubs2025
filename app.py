@@ -427,7 +427,8 @@ def show_club_detail(club_data):
     # 活動実績と合宿情報
     st.markdown('<div class="info-section">', unsafe_allow_html=True)
     st.markdown("### 🏆 2024年度活動実績")
-    st.markdown(f'<div class="highlight-box">{club_data["2024度活動実績を教えてください。以下のフォーマットでお願いいたします。\n大会名：順位"]}</div>', unsafe_allow_html=True)
+    achievements = club_data["2024度活動実績を教えてください。以下のフォーマットでお願いいたします。\n大会名：順位"]
+    st.markdown(f'<div class="highlight-box">{achievements}</div>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
     
     if club_data['合宿はありますか？'] == 'あります':
