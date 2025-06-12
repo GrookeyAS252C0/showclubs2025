@@ -114,7 +114,19 @@ def load_data():
     # 総部員数を計算
     df['総部員数'] = df[member_columns].sum(axis=1)
     
+    # 活動日数を計算
+    df['活動日数'] = df['2025年度活動日を教えてください。'].apply(calculate_activity_days)
+    
     return df
+
+def calculate_activity_days(activity_days_str):
+    """活動日文字列から活動日数を計算"""
+    if pd.isna(activity_days_str) or activity_days_str == "":
+        return 0
+    
+    # セミコロンで分割して空でない要素をカウント
+    days = [day.strip() for day in str(activity_days_str).split(';') if day.strip()]
+    return len(days)
 
 def show_club_detail(club_data):
     """部活動の詳細を表示"""
@@ -251,13 +263,15 @@ def main():
     else:
         # 部活動一覧の表示
         # フィルタリングオプション
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
         with col1:
             gender_filter = st.selectbox("性別制限", ["すべて", "制限なし", "女子のみ", "男子のみ"])
         with col2:
             beginner_filter = st.selectbox("初心者", ["すべて", "歓迎", "要相談"])
         with col3:
-            sort_order = st.selectbox("並び順", ["名前順", "部員数順"])
+            activity_days_filter = st.selectbox("活動日数", ["すべて", "1日", "2日", "3日", "4日", "5日", "6日", "7日"])
+        with col4:
+            sort_order = st.selectbox("並び順", ["名前順", "部員数順", "活動日数順"])
         
         # フィルタリング
         filtered_df = df.copy()
@@ -271,9 +285,15 @@ def main():
             else:
                 filtered_df = filtered_df[filtered_df['初心者'] != '歓迎']
         
+        if activity_days_filter != "すべて":
+            target_days = int(activity_days_filter.replace("日", ""))
+            filtered_df = filtered_df[filtered_df['活動日数'] == target_days]
+        
         # ソート
         if sort_order == "部員数順":
             filtered_df = filtered_df.sort_values('総部員数', ascending=False)
+        elif sort_order == "活動日数順":
+            filtered_df = filtered_df.sort_values('活動日数', ascending=False)
         else:
             # 名前順の場合は、カテゴリ別並び替えを維持
             filtered_df = categorize_clubs(filtered_df)
@@ -296,7 +316,7 @@ def main():
                     
                     with cols[col_idx]:
                         if st.button(
-                            f"{icon}\n\n{club_name}\n\n👥 {int(club['総部員数'])}人",
+                            f"{icon}\n\n{club_name}\n\n👥 {int(club['総部員数'])}人\n📅 週{int(club['活動日数'])}日",
                             key=f"club_{idx}",
                             use_container_width=True
                         ):
