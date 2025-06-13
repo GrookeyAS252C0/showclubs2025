@@ -87,6 +87,38 @@ CLUB_ICONS = {
     "ゴルフ部": "⛳"
 }
 
+# 部活動の読み仮名
+CLUB_READINGS = {
+    "サッカー部": "さっかーぶ",
+    "中学野球部": "やきゅうぶちゅうがく",
+    "硬式野球部": "やきゅうぶこうしき",
+    "軟式野球部": "やきゅうぶなんしき",
+    "バレーボール部": "ばれーぼーるぶ",
+    "女子バスケットボール部": "ばすけっとぼーるぶじょし",
+    "男子バスケットボール部": "ばすけっとぼーるぶだんし",
+    "テニス部": "てにすぶ",
+    "バドミントン同好会": "ばどみんとんどうこうかい",
+    "卓球部": "たっきゅうぶ",
+    "剣道部": "けんどうぶ",
+    "柔道部": "じゅうどうぶ",
+    "ダンス部": "だんすぶ",
+    "チアリーダー部": "ちありーだーぶ",
+    "合唱同好会": "がっしょうどうこうかい",
+    "吹奏楽部": "すいそうがくぶ",
+    "ECC": "いーしーしー",
+    "写真部": "しゃしんぶ",
+    "数学同好会": "すうがくどうこうかい",
+    "書道部": "しょどうぶ",
+    "歴史部": "れきしぶ",
+    "物理部": "ぶつりぶ",
+    "アメリカンフットボール部": "あめりかんふっとぼーるぶ",
+    "ゴルフ部": "ごるふぶ",
+    "水泳部": "すいえいぶ",
+    "陸上部": "りくじょうぶ",
+    "マジック・ジャグリング同好会": "まじっく・じゃぐりんぐどうこうかい",
+    "釣り人同好会": "つりびとどうこうかい"
+}
+
 @st.cache_data
 def load_data():
     """組み込みデータからDataFrameを作成"""
@@ -217,8 +249,8 @@ def categorize_clubs(df):
                 category_clubs.append(club_name)
                 used_clubs.add(club_name)
         
-        # カテゴリ内で50音順ソート
-        category_clubs.sort()
+        # カテゴリ内で50音順ソート（読み仮名を使用）
+        category_clubs.sort(key=lambda club_name: CLUB_READINGS.get(club_name, club_name))
         sorted_clubs.extend(category_clubs)
     
     # カテゴリに分類されていない部活動を50音順で追加
@@ -227,7 +259,8 @@ def categorize_clubs(df):
         if club_name not in used_clubs:
             remaining_clubs.append(club_name)
     
-    remaining_clubs.sort()
+    # 読み仮名を使用して50音順ソート
+    remaining_clubs.sort(key=lambda club_name: CLUB_READINGS.get(club_name, club_name))
     sorted_clubs.extend(remaining_clubs)
     
     # DataFrameを新しい順序で並び替え
