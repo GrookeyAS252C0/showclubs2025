@@ -274,8 +274,6 @@ def main():
     # データ読み込み
     try:
         df = load_data()
-        # カテゴリ別に並び替え
-        df = categorize_clubs(df)
     except Exception as e:
         st.error(f"データの読み込みに失敗しました: {e}")
         return
@@ -328,8 +326,12 @@ def main():
         elif sort_order == "活動日数順":
             filtered_df = filtered_df.sort_values('活動日数', ascending=False)
         else:
-            # 名前順の場合は、カテゴリ別並び替えを維持
-            filtered_df = categorize_clubs(filtered_df)
+            # 名前順の場合は、読み仮名を使用して50音順ソート
+            filtered_df = filtered_df.copy()
+            club_names = filtered_df['部活動名を教えてください。'].tolist()
+            club_names.sort(key=lambda club_name: CLUB_READINGS.get(club_name, club_name))
+            # DataFrameを新しい順序で並び替え
+            filtered_df = filtered_df.set_index('部活動名を教えてください。').loc[club_names].reset_index()
         
         # グリッド表示
         st.markdown(f"### 該当する部活動: {len(filtered_df)}件")
